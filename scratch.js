@@ -1,60 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="./assets/bootstrap.min.css">
-</head>
-<body>
-
-<!-- This starts the NetworkTables websocket, it can be accessed from multiple
-     pages simultaneously -->
-<script src="/networktables/networktables.js"></script>
-
-<!-- Obviously, you will want to copy this file locally in a real 
-     dashboard, as the Driver Station won't have internet access -->
-<script src="./assets/jquery-3.3.1.min.js"></script>
-
-<script src="./assets/popper.min.js"></script>
-
-<script src="./assets/bootstrap.min.js"></script>
-
-<script src="./assets/Handynetworktables.js"></script>
-
-<div class="row">
-	<div class="col-12">
-		<div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 95%"></div>
-</div>
-	</div>
-</div>
-<!-- uncomment this is you want to use included utility functions that
-     implement common functionality that you might find useful. Requires
-     that d3.js and jQuery are included first -->
-<!-- <script src="/networktables/utils.js"></script> -->
-<svg id="robot">
-
-</svg>
-
-<div id="field">
-	<img src="field.jpg" width="50%" style="border:3px dotted black;">
-
-</div>
-<img src="http://frcvision.local:1181/stream.mjpg">
-<div>
-	<h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
-	<h5 class="__SmartDashboard__Battery_Voltage">Matthew</h5>
-	<img src="wifi.svg" width="25px">
-	NetworkTables websocket: <span id="connectstate">Unknown state</span><br/>
-	Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
-</div>
-<hr/>
-
-<table id="nt" border=1>
-	<tbody></tbody>
-</table>
-
 
 <script>
+
+var x = 0;
+var y = 0;
+var rotation = 0;
+var r = 20;
+
 $(document).ready(function(){
 
 	// sets a function that will be called when the websocket connects/disconnects
@@ -78,25 +29,31 @@ function onNetworkTablesConnection(connected) {
 	if (connected) {
 		$("#connectstate").text("Connected!");
 
+		// clear the table
+		$("#nt tbody > tr").remove();
 
 	} else {
 		$("#connectstate").text("Disconnected!");
 	}
 }
 
-	function onValueChanged(key, value, isNew) {
+function onValueChanged(key, value, isNew) {
 
 	// Replace all forward slashes with double underscores
-	var target_class = key.replace(/\//g, '__');
-	console.log(target_class);
+	var target_class = key.replace('/', '__')
 
-	$('.' + target_class).text(value);
+	$('.' + target_class).each(function(e) {
+		e.html(value)
+	});
 
-	oldValueChanged(key, value, isNew);
-	}
+	// key thing here: we're using the various NetworkTable keys as
+	// the id of the elements that we're appending, for simplicity. However,
+	// the key names aren't always valid HTML identifiers, so we use
+	// the NetworkTables.keyToId() function to convert them appropriately
 
+}
 
-function oldValueChanged(key, value, isNew) {
+function backup() {
 
 	if (isNew) {
 		var tr = $('<tr></tr>').appendTo($('#nt > tbody:last'));
@@ -144,6 +101,12 @@ function oldValueChanged(key, value, isNew) {
 	$("#robot").html("<polygon points='"+x5.toString()+","+y5+" "+x1.toString()+","+y1+" "+x2.toString()+","+y2+ " " + x3+","+y3+" " + x4 + "," + y4 +"' stroke='green' stroke-width='4'  />");
 }
 
+
+function toDegrees (angle) {
+  return angle * (180 / Math.PI);
+}
+function toRadians (angle) {
+  return angle * (Math.PI / 180);
+}
+
 </script>
-</body>
-</html>
