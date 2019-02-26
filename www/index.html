@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
 </head>
 <body>
 
@@ -21,11 +21,14 @@
 <script src="./assets/Handynetworktables.js"></script>
 
 <div class="row">
-	<div class="col-12">
-		<div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 95%"></div>
-</div>
-	</div>
+    <div class="col-12">
+        <div class="progress">
+            <div id="percent" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
+        </div>
+    </div>
+    <div class="col-12">
+        <h1 id="battery">100%</h1>
+    </div>
 </div>
 <!-- uncomment this is you want to use included utility functions that
      implement common functionality that you might find useful. Requires
@@ -36,113 +39,119 @@
 </svg>
 
 <div id="field">
-	<img src="field.jpg" width="50%" style="border:3px dotted black;">
+    <img src="field.jpg" width="50%" style="border:3px dotted black;">
 
 </div>
 <img src="http://frcvision.local:1181/stream.mjpg">
 <div>
-	<h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
-	<h5 class="__SmartDashboard__Battery_Voltage">Matthew</h5>
-	<img src="wifi.svg" width="25px">
-	NetworkTables websocket: <span id="connectstate">Unknown state</span><br/>
-	Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+    <h3 class="__SmartDashboard__Vision__approxL"></h3>
+    <h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
+    <h5 class="__SmartDashboard__Battery_Voltage">Matthew</h5>
+    <img src="wifi.svg" width="25px">
+    NetworkTables websocket: <span id="connectstate">Unknown state</span><br/>
+    Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
 </div>
 <hr/>
 
 <table id="nt" border=1>
-	<tbody></tbody>
+    <tbody></tbody>
 </table>
 
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function () {
 
-	// sets a function that will be called when the websocket connects/disconnects
-	NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
+        // sets a function that will be called when the websocket connects/disconnects
+        NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
 
-	// sets a function that will be called when the robot connects/disconnects
-	NetworkTables.addRobotConnectionListener(onRobotConnection, true);
+        // sets a function that will be called when the robot connects/disconnects
+        NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
-	// sets a function that will be called when any NetworkTables key/value changes
-	NetworkTables.addGlobalListener(onValueChanged, true);
-});
-
-
-function onRobotConnection(connected) {
-	$('#robotstate').text(connected ? "Connected!" : "Disconnected");
-	$('#robotAddress').text(connected ? NetworkTables.getRobotAddress() : "disconnected");
-}
-
-function onNetworkTablesConnection(connected) {
-
-	if (connected) {
-		$("#connectstate").text("Connected!");
+        // sets a function that will be called when any NetworkTables key/value changes
+        NetworkTables.addGlobalListener(onValueChanged, true);
+    });
 
 
-	} else {
-		$("#connectstate").text("Disconnected!");
-	}
-}
+    function onRobotConnection(connected) {
+        $('#robotstate').text(connected ? "Connected!" : "Disconnected");
+        $('#robotAddress').text(connected ? NetworkTables.getRobotAddress() : "disconnected");
+    }
 
-	function onValueChanged(key, value, isNew) {
+    function onNetworkTablesConnection(connected) {
 
-	// Replace all forward slashes with double underscores
-	var target_class = key.replace(/\//g, '__');
-	console.log(target_class);
-
-	$('.' + target_class).text(value);
-
-	oldValueChanged(key, value, isNew);
-	}
+        if (connected) {
+            $("#connectstate").text("Connected!");
 
 
-function oldValueChanged(key, value, isNew) {
+        } else {
+            $("#connectstate").text("Disconnected!");
+        }
+    }
 
-	if (isNew) {
-		var tr = $('<tr></tr>').appendTo($('#nt > tbody:last'));
-		$('<td></td>').text(key).appendTo(tr);
-		$('<td></td>').attr('id', NetworkTables.keyToId(key))
-					   .text(value)
-					   .appendTo(tr);
-	} else {
+    function onValueChanged(key, value, isNew) {
 
-		// similarly, use keySelector to convert the key to a valid jQuery
-		// selector. This should work for class names also, not just for ids
-		$('#' + NetworkTables.keySelector(key)).text(value);
-	}
-	if(key == "/SmartDashboard/Robot_State_X")
-	{
-		x = value+100;
-	}
-	if(key == "/SmartDashboard/Robot_State_Y")
-	{
-		y = value+100;
-	}
-	if(key == "/SmartDashboard/Robot_State_R")
-	{
-		rotation = -value;
-	}
+        // Replace all forward slashes with double underscores
+        var target_class = key.replace(/\//g, '__');
+        console.log(target_class);
 
-	if(key == "/SmartDashboard/Battery_Voltage")
-	{
-		var percent = batteryPercent(value);
-		console.log(percent);
-		x = value+100;
-	}
+        $('.' + target_class).text(value);
+        updateBattery(key, value);
+        oldValueChanged(key, value, isNew);
+    }
 
-	var x1,x2,x3,x4,y1,y2,y3,y4,x5,y5 = 0;
-	x1 = x+r*Math.cos(toRadians(rotation-45));
-	x2 = x+r*Math.cos(toRadians(rotation-135));
-	x3 = x+r*Math.cos(toRadians(rotation-225));
-	x4 = x+r*Math.cos(toRadians(rotation-315));
-	y1 = y+r*Math.sin(toRadians(rotation-45));
-	y2 = y+r*Math.sin(toRadians(rotation-135));
-	y3 = y+r*Math.sin(toRadians(rotation-225));
-	y4 = y+r*Math.sin(toRadians(rotation-315));
-	x5 = x+r*0.5*Math.cos(toRadians(rotation));
-	y5 = y+r*0.5*Math.sin(toRadians(rotation));
-	$("#robot").html("<polygon points='"+x5.toString()+","+y5+" "+x1.toString()+","+y1+" "+x2.toString()+","+y2+ " " + x3+","+y3+" " + x4 + "," + y4 +"' stroke='green' stroke-width='4'  />");
-}
+    function updateBattery(key, value) {
+        if (key === '/SmartDashboard/Battery_Voltage') {
+            var voltage = parseFloat(value);
+            var normalizedVoltage = voltage - 8;
+            var percent = parseInt(normalizedVoltage * 20);
+            $("#battery").text(percent);
+            $("#percent").width(percent + "%")
+        }
+    }
+
+    function oldValueChanged(key, value, isNew) {
+
+        if (isNew) {
+            var tr = $('<tr></tr>').appendTo($('#nt > tbody:last'));
+            $('<td></td>').text(key).appendTo(tr);
+            $('<td></td>').attr('id', NetworkTables.keyToId(key))
+                .text(value)
+                .appendTo(tr);
+        } else {
+
+            // similarly, use keySelector to convert the key to a valid jQuery
+            // selector. This should work for class names also, not just for ids
+            $('#' + NetworkTables.keySelector(key)).text(value);
+        }
+        if (key == "/SmartDashboard/Robot_State_X") {
+            x = value + 100;
+        }
+        if (key == "/SmartDashboard/Robot_State_Y") {
+            y = value + 100;
+        }
+        if (key == "/SmartDashboard/Robot_State_R") {
+            rotation = -value;
+        }
+
+        if (key == "/SmartDashboard/Battery_Voltage") {
+            var percent = batteryPercent(value);
+            console.log(percent);
+            x = value + 100;
+        }
+
+        var x1, x2, x3, x4, y1, y2, y3, y4, x5, y5 = 0;
+        x1 = x + r * Math.cos(toRadians(rotation - 45));
+        x2 = x + r * Math.cos(toRadians(rotation - 135));
+        x3 = x + r * Math.cos(toRadians(rotation - 225));
+        x4 = x + r * Math.cos(toRadians(rotation - 315));
+        y1 = y + r * Math.sin(toRadians(rotation - 45));
+        y2 = y + r * Math.sin(toRadians(rotation - 135));
+        y3 = y + r * Math.sin(toRadians(rotation - 225));
+        y4 = y + r * Math.sin(toRadians(rotation - 315));
+        x5 = x + r * 0.5 * Math.cos(toRadians(rotation));
+        y5 = y + r * 0.5 * Math.sin(toRadians(rotation));
+        $("#robot").html("<polygon points='" + x5.toString() + "," + y5 + " " + x1.toString() + "," + y1 + " " + x2.toString() + "," + y2 + " " + x3 + "," + y3 + " " + x4 + "," + y4 + "' stroke='green' stroke-width='4'  />");
+    }
 
 </script>
 </body>
