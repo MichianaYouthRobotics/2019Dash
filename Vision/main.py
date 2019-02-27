@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 # ----------------------------------------------------------------------------
 # Copyright (c) 2018 FIRST. All Rights Reserved.
 # Open Source Software - may be modified and shared by FRC teams. The code
@@ -156,8 +156,8 @@ class WebcamVideoStream:
 # Angles in radians
 
 # image size ratioed to 16:9
-image_width = 320
-image_height = 240
+image_width = 160
+image_height = 120
 
 # Lifecam 3000 from datasheet
 # Datasheet: https://dl2jx7zfbtwvr.cloudfront.net/specsheets/WEBC1010.pdf
@@ -359,7 +359,7 @@ def findTape(contours, image, centerX, centerY):
     screenHeight, screenWidth, channels = image.shape
     # Seen vision targets (correct angle, adjacent to each other)
     targets = []
-    #networkTable.putString("contours", str(contours))
+    # networkTable.putString("contours", str(contours))
     if len(contours) >= 2:
         # Sort contours by area size (biggest to smallest)
         cntsSorted = sorted(contours, key=lambda x: cv2.contourArea(x), reverse=True)
@@ -451,7 +451,7 @@ def findTape(contours, image, centerX, centerY):
             if (np.sign(tilt1) != np.sign(tilt2)):
                 centerOfTargetX = math.floor((cx1 + cx2) / 2)
                 centerOfTargetY = math.floor((cy1 + cy2) / 2)
-                #for solvePNP
+                # for solvePNP
                 #         (-5.32,2.91)     ._____.     (-4,2.41)
                 #                         /     /
                 #                        /     /
@@ -465,13 +465,26 @@ def findTape(contours, image, centerX, centerY):
                 # else:
                 #     leftContour = biggestCnts[i + 1]
                 #     rightContour = biggestCnts[i]
-                cmatrix = [[1125.7685702326778, 0.0, 643.9872986888843],
-                [0.0, 1127.6179668133684, 350.6075428856929],
-                [0.0, 0.0, 1.0]]
-                dist_coeff = [0.19210626805380415, -1.9797651653526007, -0.003943437958449367, -0.0030956452246075523,
-                   5.11252359435853]
+                cmatrix = np.array([(1125.7685702326778, 0.0, 643.9872986888843),
+                (0.0, 1127.6179668133684, 350.6075428856929),
+                (0.0, 0.0, 1.0)],dtype="double")
+                dist_coeff = np.array([0.19210626805380415, -1.9797651653526007, -0.003943437958449367, -0.0030956452246075523,
+                              5.11252359435853],dtype="double")
 
-                #cv2.solvePNP();
+                # top left clockwise
+                l_object_points = np.array([(-5.32, 2.91, 0),
+                                            (-4, 2.41, 0),
+                                            (-5.38, -2.91, 0),
+                                            (-6.75, -2.41, 0)], dtype="double")
+
+                r_object_points = np.array([(5.32, 2.91, 0),
+                                            (4, 2.41, 0),
+                                  (5.38, -2.91, 0),
+                (6.75, -2.41, 0)], dtype="double")
+
+
+
+                # cv2.solvePNP();
                 # ellipse negative tilt means rotated to right
                 # Note: if using rotated rect (min area rectangle)
                 #      negative tilt means rotated to left
@@ -492,9 +505,19 @@ def findTape(contours, image, centerX, centerY):
                 # epsilonR = cv2.arcLength(rightContour, True)
                 # approxR = cv2.approxPolyDP(rightContour, epsilonR, True)
 
-
-
                 # Angle from center of camera to target (what you should pass into gyro)
+                image_points = np.array([[203, 60, 0],
+                                 [216, 67, 0],
+                                 [198, 107, 0],
+                                 [184, 100, 0]], dtype="double")
+                try:
+                    (success, rvec, tvec) = cv2.solvePnP(l_object_points, image_points, cmatrix, dist_coeff)
+                except Exception as e:
+                    networkTable.putString("Exception", e)
+                networkTable.putBoolean("PNPsuccess", success)
+                networkTable.putString("rvec", str(rvec))
+                networkTable.putString("tvec", str(tvec))
+
                 yawToTarget = calculateYaw(centerOfTargetX, centerX, H_FOCAL_LENGTH)
                 # Make sure no duplicates, then append
                 if [centerOfTargetX, yawToTarget] not in targets:
@@ -508,34 +531,36 @@ def findTape(contours, image, centerX, centerY):
         finalTarget = min(targets, key=lambda x: math.fabs(x[1]))
         # Puts the yaw on screen
         # Draws yaw of target + line where center of target is
-        cv2.putText(image, "Yaw: " + str(finalTarget[1]), (40, 40), cv2.FONT_HERSHEY_COMPLEX, .6,
-                    (255, 255, 255))
-        cv2.line(image, (finalTarget[0], screenHeight), (finalTarget[0], 0), (255, 0, 0), 2)
+        # cv2.putText(image, "Yaw: " + str(finalTarget[1]), (40, 40), cv2.FONT_HERSHEY_COMPLEX, .6,
+        #             (255, 255, 255))
+        # cv2.line(image, (finalTarget[0], screenHeight), (finalTarget[0], 0), (255, 0, 0), 2)
 
         currentAngleError = finalTarget[1]
         # pushes vision target angle to network tables
         networkTable.putNumber("tapeYaw", currentAngleError)
-        networkTable.putNumber("centerX", centerX)
-        networkTable.putNumber("centerY", centerY)
+        #networkTable.putNumber("centerX", centerX)
+        #networkTable.putNumber("centerY", centerY)
+
 
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)
-        #contour count, total area, bounding boxes, solvePNP TODO
+        # contour count, total area, bounding boxes, solvePNP TODO
     else:
         # pushes that it deosn't see vision target to network tables
         networkTable.putBoolean("tapeDetected", False)
 
-    cv2.line(image, (round(centerX), screenHeight), (round(centerX), 0), (255, 255, 255), 2)
+    # cv2.line(image, (round(centerX), screenHeight), (round(centerX), 0), (255, 255, 255), 2)
 
     return image
 
 
 # Checks if tape contours are worthy based off of contour area and (not currently) hull area
 def checkContours(cntSize, hullSize):
-    #return cntSize > (image_width / 6)
+    # return cntSize > (image_width / 6)
     return cntSize > (image_width / 10)
+
 
 # Checks if ball contours are worthy based off of contour area and (not currently) hull area
 def checkBall(cntSize, cntAspectRatio):
