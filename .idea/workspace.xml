@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd397a43-5e7b-47d1-a740-738e88079adb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/www/assets/connected.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
     </list>
@@ -23,10 +24,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Vision/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="489" column="17" lean-forward="true" selection-start-line="489" selection-start-column="17" selection-end-line="489" selection-end-column="17" />
+              <folding>
+                <element signature="e#700#711#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+            <state relative-caret-position="272">
+              <caret line="112" column="56" lean-forward="true" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -108,6 +121,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\4409\Desktop\CODE\2019Dash\www\assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\4409\Desktop\CODE\2019Dash\Vision" />
     </key>
@@ -134,12 +150,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550532966638</updated>
-      <workItem from="1550940337433" duration="6215000" />
+      <workItem from="1550940337433" duration="9675000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6215000" />
+    <option name="totallyTimeSpent" value="9675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -206,16 +222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vision/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1790">
-          <caret line="487" column="61" lean-forward="true" selection-start-line="487" selection-start-column="61" selection-end-line="488" selection-end-column="73" />
-          <folding>
-            <element signature="e#700#711#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/assets/Handynetworktables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -225,8 +231,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+        <state relative-caret-position="272">
+          <caret line="112" column="56" lean-forward="true" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vision/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="489" column="17" lean-forward="true" selection-start-line="489" selection-start-column="17" selection-end-line="489" selection-end-column="17" />
+          <folding>
+            <element signature="e#700#711#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

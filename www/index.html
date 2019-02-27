@@ -28,6 +28,8 @@
     </div>
     <div class="col-12">
         <h1 id="battery">100%</h1>
+        <img id="connected-icon" src="assets/connected.png" height="40px" class="d-none"/>
+           Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
     </div>
 </div>
 <!-- uncomment this is you want to use included utility functions that
@@ -46,10 +48,11 @@
 <div>
     <h3 class="__SmartDashboard__Vision__approxL"></h3>
     <h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
-    <h5 class="__SmartDashboard__Battery_Voltage">Matthew</h5>
+
+
     <img src="wifi.svg" width="25px">
     NetworkTables websocket: <span id="connectstate">Unknown state</span><br/>
-    Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+
 </div>
 <hr/>
 
@@ -75,6 +78,13 @@
     function onRobotConnection(connected) {
         $('#robotstate').text(connected ? "Connected!" : "Disconnected");
         $('#robotAddress').text(connected ? NetworkTables.getRobotAddress() : "disconnected");
+        //to do show connection logo
+        if (connected){
+             $('#connected-icon').removeClass('d-none');
+        } else {
+              $('#connected-icon').addClass('d-none');
+        }
+
     }
 
     function onNetworkTablesConnection(connected) {
