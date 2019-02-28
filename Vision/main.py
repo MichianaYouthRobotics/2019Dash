@@ -464,7 +464,7 @@ def findTape(contours, image, centerX, centerY):
                 #     rightContour = biggestCnts[i + 1]
                 # else:
                 #     leftContour = biggestCnts[i + 1]
-                #     rightContour = biggestCnts[i]
+                #     rightContour = biggestCnts[ik]
                 cmatrix = np.array([(1125.7685702326778, 0.0, 643.9872986888843),
                                     (0.0, 1127.6179668133684, 350.6075428856929),
                                     (0.0, 0.0, 1.0)], dtype=np.float32)
