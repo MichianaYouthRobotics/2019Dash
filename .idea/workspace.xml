@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd397a43-5e7b-47d1-a740-738e88079adb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/www/assets/connected.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vision/63.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vision/66-20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vision/90.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vision/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vision/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vision/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="489" column="17" lean-forward="true" selection-start-line="489" selection-start-column="17" selection-end-line="489" selection-end-column="17" />
+            <state relative-caret-position="221">
+              <caret line="466" column="50" lean-forward="true" selection-start-line="466" selection-start-column="50" selection-end-line="466" selection-end-column="50" />
               <folding>
                 <element signature="e#700#711#0" expanded="true" />
               </folding>
@@ -67,8 +69,8 @@
         <option value="$USER_HOME$/PycharmProjects/vision/main.py" />
         <option value="$PROJECT_DIR$/www/assets/Handynetworktables.js" />
         <option value="$PROJECT_DIR$/scratch.js" />
-        <option value="$PROJECT_DIR$/Vision/main.py" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/Vision/main.py" />
       </list>
     </option>
   </component>
@@ -150,18 +152,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550532966638</updated>
-      <workItem from="1550940337433" duration="9675000" />
+      <workItem from="1550940337433" duration="18808000" />
     </task>
+    <task id="LOCAL-00001" summary="added voltage bar">
+      <created>1551227210182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1551227210182</updated>
+    </task>
+    <task id="LOCAL-00002" summary="worked toward solvePnP">
+      <created>1551311079171</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1551311079171</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9675000" />
+    <option name="totallyTimeSpent" value="18808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13006397" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13006397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -174,7 +191,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49840087" visible="true" weight="0.3434453" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49840087" visible="true" weight="0.3434453" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50159913" side_tool="true" visible="true" weight="0.3434453" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Database" />
@@ -186,6 +203,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added voltage bar" />
+    <MESSAGE value="worked toward solvePnP" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked toward solvePnP" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/scratch.js">
@@ -238,8 +260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vision/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="489" column="17" lean-forward="true" selection-start-line="489" selection-start-column="17" selection-end-line="489" selection-end-column="17" />
+        <state relative-caret-position="221">
+          <caret line="466" column="50" lean-forward="true" selection-start-line="466" selection-start-column="50" selection-end-line="466" selection-end-column="50" />
           <folding>
             <element signature="e#700#711#0" expanded="true" />
           </folding>

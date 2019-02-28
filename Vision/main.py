@@ -466,23 +466,22 @@ def findTape(contours, image, centerX, centerY):
                 #     leftContour = biggestCnts[i + 1]
                 #     rightContour = biggestCnts[i]
                 cmatrix = np.array([(1125.7685702326778, 0.0, 643.9872986888843),
-                (0.0, 1127.6179668133684, 350.6075428856929),
-                (0.0, 0.0, 1.0)],dtype="double")
-                dist_coeff = np.array([0.19210626805380415, -1.9797651653526007, -0.003943437958449367, -0.0030956452246075523,
-                              5.11252359435853],dtype="double")
+                                    (0.0, 1127.6179668133684, 350.6075428856929),
+                                    (0.0, 0.0, 1.0)], dtype=np.float32)
+                dist_coeff = np.array(
+                    [0.19210626805380415, -1.9797651653526007, -0.003943437958449367, -0.0030956452246075523,
+                     5.11252359435853], dtype=np.float32)
 
                 # top left clockwise
                 l_object_points = np.array([(-5.32, 2.91, 0),
                                             (-4, 2.41, 0),
                                             (-5.38, -2.91, 0),
-                                            (-6.75, -2.41, 0)], dtype="double")
+                                            (-6.75, -2.41, 0)], dtype=np.float32)
 
                 r_object_points = np.array([(5.32, 2.91, 0),
                                             (4, 2.41, 0),
-                                  (5.38, -2.91, 0),
-                (6.75, -2.41, 0)], dtype="double")
-
-
+                                            (5.38, -2.91, 0),
+                                            (6.75, -2.41, 0)], dtype=np.float32)
 
                 # cv2.solvePNP();
                 # ellipse negative tilt means rotated to right
@@ -506,15 +505,15 @@ def findTape(contours, image, centerX, centerY):
                 # approxR = cv2.approxPolyDP(rightContour, epsilonR, True)
 
                 # Angle from center of camera to target (what you should pass into gyro)
-                image_points = np.array([[203, 60, 0],
-                                 [216, 67, 0],
-                                 [198, 107, 0],
-                                 [184, 100, 0]], dtype="double")
+                image_points = np.array([(203, 60),
+                                         (216, 67),
+                                         (198, 107),
+                                         (184, 100)], dtype=np.float32)
                 try:
-                    (success, rvec, tvec) = cv2.solvePnP(l_object_points, image_points, cmatrix, dist_coeff)
+                    _ret, rvec, tvec = cv2.solvePnPRansac(l_object_points, l_object_points, cmatrix, dist_coeff)
                 except Exception as e:
                     networkTable.putString("Exception", e)
-                networkTable.putBoolean("PNPsuccess", success)
+                networkTable.putString("PNPsuccess", str(_ret))
                 networkTable.putString("rvec", str(rvec))
                 networkTable.putString("tvec", str(tvec))
 
@@ -538,9 +537,8 @@ def findTape(contours, image, centerX, centerY):
         currentAngleError = finalTarget[1]
         # pushes vision target angle to network tables
         networkTable.putNumber("tapeYaw", currentAngleError)
-        #networkTable.putNumber("centerX", centerX)
-        #networkTable.putNumber("centerY", centerY)
-
+        # networkTable.putNumber("centerX", centerX)
+        # networkTable.putNumber("centerY", centerY)
 
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
