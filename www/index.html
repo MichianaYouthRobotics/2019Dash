@@ -8,7 +8,7 @@
 
 <!-- This starts the NetworkTables websocket, it can be accessed from multiple
      pages simultaneously -->
-<script src="/networktables/networktables.js"></script>
+<script src="./assets/networktables.js"></script>
 
 <!-- Obviously, you will want to copy this file locally in a real 
      dashboard, as the Driver Station won't have internet access -->
@@ -27,9 +27,14 @@
         </div>
     </div>
     <div class="col-12">
-        <h1 id="battery">100%</h1>
+	    <h1 id="battery">100%</h1><h2>X: <span class="__SmartDashboard__Turn text-danger"></span>
+		    Y: <span class="__SmartDashboard__Throttle text-info"></span>
+	    	Q: <span id="turnQ" class="text-primary"></span></h2>
         <img id="connected-icon" src="assets/connected.png" height="40px" class="d-none"/>
            Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+    </div>
+    <div class="col-12">
+	    <h2 class="text-danger">EXCEPTION - <span class="__SmartDashboard__Vision__frame"></span></h2>
     </div>
 </div>
 <!-- uncomment this is you want to use included utility functions that
@@ -41,14 +46,16 @@
 </svg>
 
 <div id="field">
-    <img src="field.jpg" width="50%" style="border:3px dotted black;">
+    <img src="field.jpg" width="50%" style="border:3px dotted black; display: none;">
 
 </div>
 <img src="http://frcvision.local:1181/stream.mjpg">
 <div>
     <h3 class="__SmartDashboard__Vision__approxL"></h3>
     <h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
-
+    <h4>PNP Success: <span class="__SmartDashboard__Vision__PNPsuccess"></span></h4>
+    <h4>RVEC: <span class="__SmartDashboard__Vision__rvec"></span></h4>
+    <h4>TVEC: <span class="__SmartDashboard__Vision_tvec"></span></h4>
 
     <img src="wifi.svg" width="25px">
     NetworkTables websocket: <span id="connectstate">Unknown state</span><br/>
@@ -102,10 +109,10 @@
 
         // Replace all forward slashes with double underscores
         var target_class = key.replace(/\//g, '__');
-        console.log(target_class);
 
         $('.' + target_class).text(value);
         updateBattery(key, value);
+	updateQ(key, value);
         oldValueChanged(key, value, isNew);
     }
 
@@ -118,6 +125,14 @@
             $("#percent").width(percent + "%")
         }
     }
+
+	function updateQ(key, value) {
+		if (key === '/SmartDashboard/Turn') {
+			var turn = value;
+			var q = Math.sin(turn * Math.PI/2);
+			$('#turnQ').text(q);
+		}
+	}
 
     function oldValueChanged(key, value, isNew) {
 
@@ -143,25 +158,7 @@
             rotation = -value;
         }
 
-        if (key == "/SmartDashboard/Battery_Voltage") {
-            var percent = batteryPercent(value);
-            console.log(percent);
-            x = value + 100;
-        }
-
-        var x1, x2, x3, x4, y1, y2, y3, y4, x5, y5 = 0;
-        x1 = x + r * Math.cos(toRadians(rotation - 45));
-        x2 = x + r * Math.cos(toRadians(rotation - 135));
-        x3 = x + r * Math.cos(toRadians(rotation - 225));
-        x4 = x + r * Math.cos(toRadians(rotation - 315));
-        y1 = y + r * Math.sin(toRadians(rotation - 45));
-        y2 = y + r * Math.sin(toRadians(rotation - 135));
-        y3 = y + r * Math.sin(toRadians(rotation - 225));
-        y4 = y + r * Math.sin(toRadians(rotation - 315));
-        x5 = x + r * 0.5 * Math.cos(toRadians(rotation));
-        y5 = y + r * 0.5 * Math.sin(toRadians(rotation));
-        $("#robot").html("<polygon points='" + x5.toString() + "," + y5 + " " + x1.toString() + "," + y1 + " " + x2.toString() + "," + y2 + " " + x3 + "," + y3 + " " + x4 + "," + y4 + "' stroke='green' stroke-width='4'  />");
-    }
+}
 
 </script>
 </body>
