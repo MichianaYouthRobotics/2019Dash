@@ -181,8 +181,11 @@ green_blur = 1
 orange_blur = 27
 
 # define range of green of retroreflective tape in HSV
-lower_green = np.array([55, 44, 23])
-upper_green = np.array([94, 255, 126])
+# lower_green = np.array([55, 44, 23]) ring
+# upper_green = np.array([94, 255, 126])
+lower_green = np.array([68, 183, 41])
+upper_green = np.array([101, 255, 145])
+
 # define range of orange from cargo ball in HSV
 lower_orange = np.array([0, 193, 92])
 upper_orange = np.array([23, 255, 255])
@@ -458,13 +461,16 @@ def findTape(contours, image, centerX, centerY):
                 #                       /     /
                 #                      /     /
                 #     (-6.75,-2.41)   ._____.      (-5.38,-2.91)
+                if cx1 < cx2:
+                    leftContour = biggestCnts[i]
+                    rightContour = biggestCnts[i + 1]
+                    pixelDistanceBetween = cx2 - cx1
+                else:
+                    leftContour = biggestCnts[i + 1]
+                    rightContour = biggestCnts[i]
+                    pixelDistanceBetween = cx1 - cx2
 
-                # if cx1 < cx2:
-                #     leftContour = biggestCnts[i]
-                #     rightContour = biggestCnts[i + 1]
-                # else:
-                #     leftContour = biggestCnts[i + 1]
-                #     rightContour = biggestCnts[ik]
+
                 cmatrix = np.array([(1125.7685702326778, 0.0, 643.9872986888843),
                                     (0.0, 1127.6179668133684, 350.6075428856929),
                                     (0.0, 0.0, 1.0)], dtype=np.float32)
@@ -509,13 +515,13 @@ def findTape(contours, image, centerX, centerY):
                                          (216, 67),
                                          (198, 107),
                                          (184, 100)], dtype=np.float32)
-                try:
-                    _ret, rvec, tvec = cv2.solvePnPRansac(l_object_points, l_object_points, cmatrix, dist_coeff)
-                except Exception as e:
-                    networkTable.putString("Exception", e)
-                networkTable.putString("PNPsuccess", str(_ret))
-                networkTable.putString("rvec", str(rvec))
-                networkTable.putString("tvec", str(tvec))
+                # try:
+                #     _ret, rvec, tvec = cv2.solvePnPRansac(l_object_points, l_object_points, cmatrix, dist_coeff)
+                # except Exception as e:
+                #     networkTable.putString("Exception", e)
+                # networkTable.putString("PNPsuccess", str(_ret))
+                # networkTable.putString("rvec", str(rvec))
+                # networkTable.putString("tvec", str(tvec))
 
                 yawToTarget = calculateYaw(centerOfTargetX, centerX, H_FOCAL_LENGTH)
                 # Make sure no duplicates, then append
@@ -542,6 +548,9 @@ def findTape(contours, image, centerX, centerY):
 
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
+        networkTable.putString("targetPitch", pitch);
+        networkTable.putString("targetDistance", calculateDistance(17, 22, pitch))
+        networkTable.putString("targetPixelsFromCenterX", centerOfTargetX - centerX)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)
         # contour count, total area, bounding boxes, solvePNP TODO
@@ -593,6 +602,8 @@ def calculateDistance(heightOfCamera, heightOfTarget, pitch):
               camera -----
                        d
     '''
+    if math.tan(math.radians(pitch)) == 0:
+        return 0
     distance = math.fabs(heightOfTargetFromCamera / math.tan(math.radians(pitch)))
 
     return distance
@@ -825,6 +836,7 @@ if __name__ == "__main__":
                 cap.autoExpose = False
                 boxBlur = blurImg(frame, green_blur)
                 threshold = threshold_video(lower_green, upper_green, boxBlur)
+                networkTable.putString("frame", str(frame.__class__.__name__))
                 processed = findTargets(frame, threshold)
             else:
                 # Checks if you just want camera for Cargo processing, by dent of everything else being false, true by default

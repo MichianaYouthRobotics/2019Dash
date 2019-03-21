@@ -45,9 +45,17 @@
 
 </div>
 <img src="http://frcvision.local:1181/stream.mjpg">
+<!--<img src="http://frcvision.local:1181/stream.mjpg">-->
 <div>
     <h3 class="__SmartDashboard__Vision__approxL"></h3>
+    <h3 >yaw</h3>
     <h4 class="__SmartDashboard__Vision__tapeYaw"></h4>
+    <h3 >distance</h3>
+    <h4 class="__SmartDashboard__Vision__targetDistance"></h4>
+    <h3 >pitch</h3>
+    <h4 class="__SmartDashboard__Vision__targetPitch"></h4>
+    <h3 >distance From Center X</h3>
+    <h4 class="__SmartDashboard__Vision__targetPixelsFromCenterX"></h4>
 
 
     <img src="wifi.svg" width="25px">
@@ -149,18 +157,18 @@
             x = value + 100;
         }
 
-        var x1, x2, x3, x4, y1, y2, y3, y4, x5, y5 = 0;
-        x1 = x + r * Math.cos(toRadians(rotation - 45));
-        x2 = x + r * Math.cos(toRadians(rotation - 135));
-        x3 = x + r * Math.cos(toRadians(rotation - 225));
-        x4 = x + r * Math.cos(toRadians(rotation - 315));
-        y1 = y + r * Math.sin(toRadians(rotation - 45));
-        y2 = y + r * Math.sin(toRadians(rotation - 135));
-        y3 = y + r * Math.sin(toRadians(rotation - 225));
-        y4 = y + r * Math.sin(toRadians(rotation - 315));
-        x5 = x + r * 0.5 * Math.cos(toRadians(rotation));
-        y5 = y + r * 0.5 * Math.sin(toRadians(rotation));
-        $("#robot").html("<polygon points='" + x5.toString() + "," + y5 + " " + x1.toString() + "," + y1 + " " + x2.toString() + "," + y2 + " " + x3 + "," + y3 + " " + x4 + "," + y4 + "' stroke='green' stroke-width='4'  />");
+        // var x1, x2, x3, x4, y1, y2, y3, y4, x5, y5 = 0;
+        // x1 = x + r * Math.cos(toRadians(rotation - 45));
+        // x2 = x + r * Math.cos(toRadians(rotation - 135));
+        // x3 = x + r * Math.cos(toRadians(rotation - 225));
+        // x4 = x + r * Math.cos(toRadians(rotation - 315));
+        // y1 = y + r * Math.sin(toRadians(rotation - 45));
+        // y2 = y + r * Math.sin(toRadians(rotation - 135));
+        // y3 = y + r * Math.sin(toRadians(rotation - 225));
+        // y4 = y + r * Math.sin(toRadians(rotation - 315));
+        // x5 = x + r * 0.5 * Math.cos(toRadians(rotation));
+        // y5 = y + r * 0.5 * Math.sin(toRadians(rotation));
+        // $("#robot").html("<polygon points='" + x5.toString() + "," + y5 + " " + x1.toString() + "," + y1 + " " + x2.toString() + "," + y2 + " " + x3 + "," + y3 + " " + x4 + "," + y4 + "' stroke='green' stroke-width='4'  />");
     }
 
 </script>
