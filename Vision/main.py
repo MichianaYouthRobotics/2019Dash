@@ -549,7 +549,7 @@ def findTape(contours, image, centerX, centerY):
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
         networkTable.putString("targetPitch", pitch);
-        networkTable.putString("targetDistance", calculateDistance(17, 22, pitch))
+        networkTable.putString("targetDistance", calculateDistance(23, 21.5, pitch))
         networkTable.putString("targetPixelsFromCenterX", centerOfTargetX - centerX)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)

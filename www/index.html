@@ -14,6 +14,8 @@
      dashboard, as the Driver Station won't have internet access -->
 <script src="./assets/jquery-3.3.1.min.js"></script>
 
+<script src="./assets/p5.min.js"></script>
+
 <script src="./assets/popper.min.js"></script>
 
 <script src="./assets/bootstrap.min.js"></script>
@@ -105,12 +107,11 @@
             $("#connectstate").text("Disconnected!");
         }
     }
-
     function onValueChanged(key, value, isNew) {
 
         // Replace all forward slashes with double underscores
         var target_class = key.replace(/\//g, '__');
-        console.log(target_class);
+        // console.log(target_class);
 
         $('.' + target_class).text(value);
         updateBattery(key, value);
@@ -153,9 +154,14 @@
 
         if (key == "/SmartDashboard/Battery_Voltage") {
             var percent = batteryPercent(value);
-            console.log(percent);
+            // console.log(percent);
             x = value + 100;
         }
+        if(key == "/SmartDashboard/ElevatorHeightChanged"){
+            hasBeenRecorded = !value;
+            console.log("height recorded");
+        }
+
 
         // var x1, x2, x3, x4, y1, y2, y3, y4, x5, y5 = 0;
         // x1 = x + r * Math.cos(toRadians(rotation - 45));
@@ -170,6 +176,31 @@
         // y5 = y + r * 0.5 * Math.sin(toRadians(rotation));
         // $("#robot").html("<polygon points='" + x5.toString() + "," + y5 + " " + x1.toString() + "," + y1 + " " + x2.toString() + "," + y2 + " " + x3 + "," + y3 + " " + x4 + "," + y4 + "' stroke='green' stroke-width='4'  />");
     }
+
+    var hasBeenRecorded = true;
+
+    $(document).keypress(function(event){
+        console.log(String.fromCharCode(event.which) + " " + event.which);
+        if(hasBeenRecorded === true){
+            var setElevator = false;
+            if (event.which === 55 || event.which === "55") {
+                console.log("hatch mid");
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","HatchMid");
+                setElevator = true;
+            }else if(event.which === 45){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogUp");
+                setElevator = true;
+            }else if(event.which === 43){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogDown");
+                setElevator = true;
+            }
+            if(setElevator){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeightChanged", true);
+                hasBeenRecorded = false;
+            }
+        }
+    });
+
 
 </script>
 </body>
