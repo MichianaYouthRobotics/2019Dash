@@ -14,8 +14,6 @@
      dashboard, as the Driver Station won't have internet access -->
 <script src="./assets/jquery-3.3.1.min.js"></script>
 
-<script src="./assets/p5.min.js"></script>
-
 <script src="./assets/popper.min.js"></script>
 
 <script src="./assets/bootstrap.min.js"></script>
@@ -185,13 +183,40 @@
             var setElevator = false;
             if (event.which === 55 || event.which === "55") {
                 console.log("hatch mid");
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","HatchHigh");
+                setElevator = true;
+            }else if(event.which === 52){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","HatchMid");
+                setElevator = true;
+            }else if(event.which === 49){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","HatchLow");
                 setElevator = true;
             }else if(event.which === 45){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogUp");
                 setElevator = true;
             }else if(event.which === 43){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogDown");
+                setElevator = true;
+            }else if(event.which === 57){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoHigh");
+                setElevator = true;
+            }else if(event.which === 57){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoHigh");
+                setElevator = true;
+            }else if(event.which === 54){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoMid");
+                setElevator = true;
+            }else if(event.which === 51){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoLow");
+                setElevator = true;
+            }else if(event.which === 13){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","ProjectorIn");
+                setElevator = true;
+            }else if(event.which === 46){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","ProjectorOut");
+                setElevator = true;
+            }else if(event.which === 56){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogHatchToCargo");
                 setElevator = true;
             }
             if(setElevator){
