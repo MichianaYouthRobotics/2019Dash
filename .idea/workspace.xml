@@ -4,7 +4,6 @@
     <list default="true" id="cd397a43-5e7b-47d1-a740-738e88079adb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vision/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vision/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/assets/Handynetworktables.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/assets/Handynetworktables.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,20 +23,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="182" column="33" selection-start-line="182" selection-start-column="33" selection-end-line="182" selection-end-column="33" />
+            <state relative-caret-position="144">
+              <caret line="217" column="35" lean-forward="true" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vision/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="553" column="37" selection-start-line="553" selection-start-column="37" selection-end-line="553" selection-end-column="37" />
+            <state relative-caret-position="331">
+              <caret line="602" column="24" lean-forward="true" selection-start-line="602" selection-start-column="24" selection-end-line="602" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -71,6 +70,7 @@
       <find>find</find>
       <find>cALCulatepitch</find>
       <find>console</find>
+      <find>calculateDistance</find>
       <find>console.log</find>
     </findStrings>
     <replaceStrings>
@@ -86,17 +86,17 @@
         <option value="$USER_HOME$/PycharmProjects/vision/main.py" />
         <option value="$PROJECT_DIR$/scratch.js" />
         <option value="$PROJECT_DIR$/venv/Scripts/activate.bat" />
-        <option value="$PROJECT_DIR$/Vision/main.py" />
         <option value="$PROJECT_DIR$/www/assets/Handynetworktables.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/Vision/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1919" />
-    <option name="y" value="87" />
-    <option name="width" value="1295" />
-    <option name="height" value="695" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1943" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -169,7 +169,7 @@
       <updated>1550532966638</updated>
       <workItem from="1550940337433" duration="21280000" />
       <workItem from="1552948607651" duration="10630000" />
-      <workItem from="1553546128819" duration="4439000" />
+      <workItem from="1553546128819" duration="17121000" />
     </task>
     <task id="LOCAL-00001" summary="added voltage bar">
       <created>1551227210182</created>
@@ -206,17 +206,31 @@
       <option name="project" value="LOCAL" />
       <updated>1553209395175</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="numpad :D">
+      <created>1553637971706</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1553637971706</updated>
+    </task>
+    <task id="LOCAL-00007" summary="numpad :D pt 2">
+      <created>1553641244876</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1553641244876</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36349000" />
+    <option name="totallyTimeSpent" value="49031000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08901919" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13522267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -226,9 +240,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4989339" visible="true" weight="0.12026002" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49878544" weight="0.19715808" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49716598" weight="0.17168142" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010661" side_tool="true" visible="true" weight="0.12026002" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50121456" side_tool="true" weight="0.19715808" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -247,7 +261,9 @@
     <MESSAGE value="worked toward solvePnP" />
     <MESSAGE value="images" />
     <MESSAGE value="update (distance etc)" />
-    <option name="LAST_COMMIT_MESSAGE" value="update (distance etc)" />
+    <MESSAGE value="numpad :D" />
+    <MESSAGE value="numpad :D pt 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="numpad :D pt 2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/scratch.js">
@@ -294,13 +310,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vision/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="553" column="37" selection-start-line="553" selection-start-column="37" selection-end-line="553" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/assets/Handynetworktables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -310,8 +319,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="182" column="33" selection-start-line="182" selection-start-column="33" selection-end-line="182" selection-end-column="33" />
+        <state relative-caret-position="144">
+          <caret line="217" column="35" lean-forward="true" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vision/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="602" column="24" lean-forward="true" selection-start-line="602" selection-start-column="24" selection-end-line="602" selection-end-column="24" />
         </state>
       </provider>
     </entry>

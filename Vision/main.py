@@ -181,10 +181,10 @@ green_blur = 1
 orange_blur = 27
 
 # define range of green of retroreflective tape in HSV
-# lower_green = np.array([55, 44, 23]) ring
-# upper_green = np.array([94, 255, 126])
-lower_green = np.array([68, 183, 41])
-upper_green = np.array([101, 255, 145])
+lower_green = np.array([55, 44, 23])
+upper_green = np.array([94, 255, 126])
+# lower_green = np.array([68, 183, 41])
+# upper_green = np.array([101, 255, 145])
 
 # define range of orange from cargo ball in HSV
 lower_orange = np.array([0, 193, 92])
@@ -548,8 +548,8 @@ def findTape(contours, image, centerX, centerY):
 
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
-        networkTable.putString("targetPitch", pitch);
-        networkTable.putString("targetDistance", calculateDistance(23, 21.5, pitch))
+        networkTable.putString("targetPitch", pitch)
+        networkTable.putString("targetDistance", calculateDistance(25.25, 21.5, pitch))
         networkTable.putString("targetPixelsFromCenterX", centerOfTargetX - centerX)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)

@@ -40,11 +40,12 @@
 
 </svg>
 
-<div id="field">
-    <img src="field.jpg" width="50%" style="border:3px dotted black;">
+<!--<div id="field">-->
+    <!--<img src="field.jpg" width="50%" style="border:3px dotted black;">-->
 
-</div>
-<img src="http://frcvision.local:1181/stream.mjpg">
+<!--</div>-->
+
+<img src="http://frcvision.local:1181/stream.mjpg" height="800px">
 <!--<img src="http://frcvision.local:1181/stream.mjpg">-->
 <div>
     <h3 class="__SmartDashboard__Vision__approxL"></h3>
@@ -209,7 +210,7 @@
             }else if(event.which === 51){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoLow");
                 setElevator = true;
-            }else if(event.which === 13){
+            }else if(event.which === 48){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","ProjectorIn");
                 setElevator = true;
             }else if(event.which === 46){
@@ -217,6 +218,16 @@
                 setElevator = true;
             }else if(event.which === 56){
                 NetworkTables.putValue("/SmartDashboard/ElevatorHeight","JogHatchToCargo");
+                setElevator = true;////
+
+            }else if(event.which === 53){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","CargoShip");
+                setElevator = true;
+            }else if(event.which === 42){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","RemoveHatchRight");
+                setElevator = true;
+            }else if(event.which === 47){
+                NetworkTables.putValue("/SmartDashboard/ElevatorHeight","RemoveHatchLeft");
                 setElevator = true;
             }
             if(setElevator){
