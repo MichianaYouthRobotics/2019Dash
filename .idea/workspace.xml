@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd397a43-5e7b-47d1-a740-738e88079adb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vision/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vision/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vision/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="602" column="24" lean-forward="true" selection-start-line="602" selection-start-column="24" selection-end-line="602" selection-end-column="24" />
+            <state relative-caret-position="144">
+              <caret line="558" column="68" lean-forward="true" selection-start-line="558" selection-start-column="68" selection-end-line="558" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -169,7 +167,7 @@
       <updated>1550532966638</updated>
       <workItem from="1550940337433" duration="21280000" />
       <workItem from="1552948607651" duration="10630000" />
-      <workItem from="1553546128819" duration="17121000" />
+      <workItem from="1553546128819" duration="21116000" />
     </task>
     <task id="LOCAL-00001" summary="added voltage bar">
       <created>1551227210182</created>
@@ -220,11 +218,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553641244876</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="numpad :D pt 2">
+      <created>1554336822185</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1554336822185</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49031000" />
+    <option name="totallyTimeSpent" value="53026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -326,8 +331,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vision/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="602" column="24" lean-forward="true" selection-start-line="602" selection-start-column="24" selection-end-line="602" selection-end-column="24" />
+        <state relative-caret-position="144">
+          <caret line="558" column="68" lean-forward="true" selection-start-line="558" selection-start-column="68" selection-end-line="558" selection-end-column="68" />
         </state>
       </provider>
     </entry>
