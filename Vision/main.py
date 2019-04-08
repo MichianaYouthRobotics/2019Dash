@@ -181,8 +181,8 @@ green_blur = 1
 orange_blur = 27
 
 # define range of green of retroreflective tape in HSV
-lower_green = np.array([55, 44, 23])
-upper_green = np.array([94, 255, 126])
+lower_green = np.array([45, 142, 40])
+upper_green = np.array([81, 255, 172])
 # lower_green = np.array([68, 183, 41])
 # upper_green = np.array([101, 255, 145])
 
@@ -549,7 +549,8 @@ def findTape(contours, image, centerX, centerY):
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
         networkTable.putString("targetPitch", pitch)
-        networkTable.putString("targetDistance", calculateDistance(25.25, 21.5, pitch))
+        newPitch = pitch - math.radians(2)
+        networkTable.putString("targetDistance", calculateDistance(38, 21, pitch))
         networkTable.putString("targetPixelsFromCenterX", centerOfTargetX - centerX)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)
@@ -621,7 +622,7 @@ def calculatePitch(pixelY, centerY, vFocalLength):
     pitch = math.degrees(math.atan((pixelY - centerY) / vFocalLength))
     # Just stopped working have to do this:
     pitch *= -1
-    return round(pitch)
+    return pitch
 
 
 def getEllipseRotation(image, cnt):
