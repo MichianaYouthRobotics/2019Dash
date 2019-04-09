@@ -546,21 +546,21 @@ def findTape(contours, image, centerX, centerY):
         # networkTable.putNumber("centerX", centerX)
         # networkTable.putNumber("centerY", centerY)
 
+        pitch2 = calculatePitch2(math.radians(34.3), centerOfTargetY)
         networkTable.putString("targetCenterX", centerOfTargetX)
         networkTable.putString("targetCenterY", centerOfTargetY)
-        networkTable.putString("targetPitch", pitch)
-        newPitch = pitch - math.radians(2)
-        networkTable.putString("targetDistance", calculateDistance(38, 21, pitch))
+        networkTable.putString("targetPitch", pitch2)
+        # newPitch = pitch - math.radians(20)
+        networkTable.putString("targetDistance", calculateDistance(38, 21, pitch2))
         networkTable.putString("targetPixelsFromCenterX", centerOfTargetX - centerX)
         # networkTable.putString("approxL", approxL)
         # networkTable.putString("approxY", approxR)
         # contour count, total area, bounding boxes, solvePNP TODO
     else:
-        # pushes that it deosn't see vision target to network tables
+        # pushes that it doesn't see vision target to network tables
         networkTable.putBoolean("tapeDetected", False)
 
     # cv2.line(image, (round(centerX), screenHeight), (round(centerX), 0), (255, 255, 255), 2)
-
     return image
 
 
@@ -584,6 +584,11 @@ def translateRotation(rotation, width, height):
     rotation *= -1
     return round(rotation)
 
+
+def calculatePitch2(verticalFOV, pixelY):
+    if(image_height - pixelY == 0):
+        return 0
+    return verticalFOV * (pixelY/(image_height - pixelY))
 
 def calculateDistance(heightOfCamera, heightOfTarget, pitch):
     heightOfTargetFromCamera = heightOfTarget - heightOfCamera
